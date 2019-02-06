@@ -18,3 +18,5 @@ Route::get('/', function () {
 //myself coding
 
 Route::get('insert','TestController@index');
+Route::get('builder','TestController@builder');
+Route::get('builder','TestController@select');
