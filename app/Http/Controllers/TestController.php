@@ -56,12 +56,5 @@ class TestController extends Controller
 
        }
 
-
-
-
-        // $deleted = DB::delete('delete * from users');
-        // $data =DB::select('insert into users(id,name,email,password)values(?,?,?,?)',[1,'mohamamd','computercodemohammad@gmail.com','computercodemohammad']);
-        // return $data;
-
     }
 }
