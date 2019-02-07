@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('insert','TestController@index');
 Route::get('builder','TestController@builder');
 Route::get('builder','TestController@select');
+Route::get('join','TestController@join');
+Route::get('advance','TestController@advance');
+Route::get('subquery','TestController@subquery');

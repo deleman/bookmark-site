@@ -137,4 +137,45 @@ class TestController extends Controller
 
     }
 
+    //JOIN TABLES
+    public function join(){
+        $info = DB::table('users')
+            ->join('test','users.id','=','test.user_id')
+            ->select('users.name','test.age','test.city')
+                ->get();
+
+        foreach ($info as $key => $value) {
+            echo $value->name.' ***** ';
+            echo $value->age.' ***** ';
+            echo $value->city.'<br >';
+        }
+    }
+
+    //advande join in laravel
+    public function advance(){
+       $result = DB::table('users')
+        ->join('test', function ($join) {
+                            $join->on('users.id', '=', 'test.user_id')
+                                ->where('users.id','>','1');
+                        })
+        ->get();
+
+        dd($result);
+    }
+
+
+    //sub query join
+    public function subquery(){
+        $latestPosts = DB::table('users')
+            ->select('id', DB::raw('MAX(created_at) as last_post_created_at'))
+            ->where('id','>', 1)
+            ->groupBy('id');
+
+        $users = DB::table('test')
+            ->joinSub($latestPosts, 'latest_posts', function ($join) {
+                $join->on('test.user_id', '=', 'latest_posts.id');
+            })->get();
+
+        return $users;
+    }
 }
