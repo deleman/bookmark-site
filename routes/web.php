@@ -68,3 +68,12 @@ Route::post('update','LinkController@update')->name('update');
 //show all information in page
 Route::get('show','LinkController@show');
 
+
+/**
+ *   just for test
+*/
+
+Route::get('test',function(){
+    return view('store.test.test');
+});
+

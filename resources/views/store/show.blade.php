@@ -9,7 +9,7 @@
             border: 1px solid lightblue;
             border-radius: 15px;
             box-shadow: 2px 3px 3px cyan;
-            background-color: floralwhite;
+            background-color: darkslategrey;
             min-height: 550px;
 
         }
@@ -58,17 +58,7 @@
     @section('content')
     <article class="row">
             <div class="col-sm-5 m-auto">
-                    @if(session()->has('Inserted'))
-                    <div class="alert alert-success" role="alert">
-                        {{session('Inserted')}}
-                    </div>
-                @endif
-
-                @if(session()->has('errorInserted'))
-                    <div class="alert alert-danger" role="alert">
-                            {{session('errorInserted')}}
-                    </div>
-                @endif
+                 @include('store.error')
             </div>
         </article>
 
@@ -103,15 +93,10 @@
                             <form class="col-md-4 col-sm-2 col-3 p-0 m-0" action="{{route('change')}}" method="POST">
                                     {{ csrf_field() }}
                                 <input type="hidden" value="{{$item->link}}" name="url" id="url">
-                                <button class="col-12 btn btn-danger">change</button>
+                                <button class="col-12 btn btn-warning">change</button>
                             </form>
 
-                            {{--  delete post   --}}
-                            <form class="col-md-4 col-sm-2 col-3 p-0 m-0" action="{{route('delete')}}" method="POST">
-                                    {{ csrf_field() }}
-                                <input type="hidden" value="{{$item->link}}" name="url" id="url">
-                                <button class="col-12 btn btn-danger">delete</button>
-                            </form>
+                            @include('store.delete')
                         </div>
                     </div>
                 @endforeach
@@ -127,3 +112,5 @@
         </article>
     </section>
 @endsection
+
+

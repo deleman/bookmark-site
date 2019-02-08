@@ -17,6 +17,6 @@
     </section>
 
     <script src="http://localhost/blog5.7/public/js/app.js"></script>
-    @stack('css')
+    @stack('js')
 </body>
 </html>

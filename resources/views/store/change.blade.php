@@ -21,17 +21,7 @@
 @section('content')
     <article class="row">
         <div class="col-sm-5 m-auto">
-            @if(session()->has('Inserted'))
-                <div class="alert alert-success" role="alert">
-                    {{session('Inserted')}}
-                </div>
-            @endif
-
-            @if(session()->has('errorInserted'))
-                <div class="alert alert-danger" role="alert">
-                        {{session('errorInserted')}}
-                </div>
-            @endif
+            @include('store.error')
         </div>
     </article>
     <article class="row ">
