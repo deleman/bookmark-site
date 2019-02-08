@@ -4,12 +4,15 @@
     <style>
 
         body{
-            background-color: gray;
+            background-color: currentColor;
         }
         .radius{
             border: 1px solid lightblue;
             border-radius: 15px;
             box-shadow: 2px 3px 3px cyan;
+        }
+        .custome-bg{
+            background-color: darkslategrey !important;
         }
 
     </style>
@@ -33,7 +36,7 @@
     </article>
     <article class="row ">
 
-        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto bg-info mt-5 radius pt-3">
+        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto custome-bg mt-5 radius pt-3">
             <h3 class="m-auto text-center text-dark ">Link Insert</h3>
             <form class="p-1 pt-1 pb-4" action="{{route('store')}}" method="POST">
                 {{ csrf_field() }}
@@ -57,7 +60,6 @@
         </div>
     </article>
 
-    <a href="{{route('store')}}">click </a>
 
 @endsection
 

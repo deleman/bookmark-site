@@ -40,6 +40,18 @@
          .top-radius{
             border-radius: 12px 12px 0px 0px;
          }
+         .bottom{
+            position: absolute;
+            bottom:0px;
+            width:100%;
+            margin-right: -15px;
+            margin-left: -15px;
+            border-radius: 0px 0px 12px 12px;
+
+         }
+         .relative{
+             position: relative;
+         }
 
     </style>
     @endpush
@@ -60,7 +72,7 @@
             </div>
         </article>
 
-    <section class="radius mt-1 container-fluid">
+    <section class="radius mt-1 container-fluid relative">
         <article class="row bg-dark top-radius">
 
             <div class="col-sm-8 col-md-8 col-lg-6 mx-auto p-0 mt-3 mb-0 pb-0 radius-search d-flex h-100">
@@ -104,12 +116,14 @@
                     </div>
                 @endforeach
 
-                <div class=" text-danger row mt-5 pb-0">
-                    <span class="col-5 m-auto d-flex ">
+            </div>
+        </article>
+        <article class="d-flex justify-content-center bg-dark bottom">
+                <div class=" text-danger row pb-0 ">
+                    <span class="col-5 d-flex justify-content-center align-self-center m-auto d-flex ">
                         <sapn class="m-auto"><p>{{ $all->links() }}</p><span>
                     </span>
                 </div>
-            </div>
         </article>
     </section>
 @endsection
