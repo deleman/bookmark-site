@@ -77,3 +77,7 @@ Route::get('test',function(){
     return view('store.test.test');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
