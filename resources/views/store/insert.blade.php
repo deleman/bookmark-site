@@ -36,8 +36,8 @@
     </article>
     <article class="row ">
 
-        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto custome-bg mt-5 radius pt-3">
-            <h3 class="m-auto text-center text-dark ">Link Insert</h3>
+        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto text-light custome-bg mt-5 radius pt-3">
+            <h3 class="m-auto text-center text-warning ">Link Insert</h3>
             <form class="p-1 pt-1 pb-4" action="{{route('store')}}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
