@@ -37,7 +37,7 @@
 
     <section class="radius mt-1 container-fluid relative">
         @include('store.header')
-        <article class="row">
+        <article class="row" style="margin-bottom:100px;">
             <div class=" col-sm-12 col-lg-10 col-md-12 m-auto px-1  pt-2">
                 @foreach ($all as $item)
                     <div class="bg-dark text-white mx-auto my-2 slice-radius px-3 py-1 row">
@@ -66,7 +66,7 @@
 
             </div>
         </article>
-        <article class="d-flex justify-content-center bg-dark bottom">
+        <article class="d-flex justify-content-center mt-3 bg-dark bottom">
                 <div class=" text-danger row pb-0 ">
                     <span class="col-5 d-flex justify-content-center align-self-center m-auto d-flex ">
                         <sapn class="m-auto"><p>{{ $all->links() }}</p><span>

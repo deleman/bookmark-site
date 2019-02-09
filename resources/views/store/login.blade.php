@@ -14,6 +14,9 @@
         .custome-bg{
             background-color: darkslategrey !important;
         }
+        .card-radius{
+            border-radius: 14px;
+        }
 
     </style>
 @endpush
@@ -25,11 +28,12 @@
         </div>
     </article>
 
+    @include('store.header')
 
 <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card card-radius">
                     <div class="card-header">
                         <div class="row">
                             <span class="col-2 ml-auto">{{ __('Login') }}</span>
@@ -39,7 +43,7 @@
                         </div>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body" >
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 

@@ -25,7 +25,7 @@ class LinkController extends Controller
 
     //show all informations in show view file
     public function show(){
-        $all = DB::table('link')->orderBy('created_at', 'desc')->paginate(2);
+        $all = DB::table('link')->orderBy('created_at', 'desc')->paginate(8);
 
         return view('store.show',compact('all'));
     }
@@ -124,7 +124,6 @@ class LinkController extends Controller
             'url' => 'required|max:255|min:10|url'
         ]);
 
-        return $validatedData;
         $header = $this->val_input($request->header);
         $url= $this->val_input($request->url);
         $url_hidden= $this->val_input($request->url_hidden);
@@ -142,10 +141,8 @@ class LinkController extends Controller
        );
 
        if($result){
-           echo 'redirect';
            return redirect('show')->with('Inserted','Your information successfully updated!');
        }else{
-           echo 'message eroor';
            $request->session()->flash('errorInserted','Error!!, in update your informations!');
        }
 
@@ -154,17 +151,17 @@ class LinkController extends Controller
 
     //show result page and get post informations
     public function search(Request $request){
-        //set default value for search session 
+        //set default value for search session
         session('search_value','search ...');
 
         if($request->search==null){
-           return redirect()->route('show');
+           return redirect()->route('home');
         }
 
         $search =$this->val_input($request->search);
         //set session
         session(['search_value'=> $search]);
-        $all = DB::table('link')->where('link','like','%'.$search.'%')->orWhere('header','like','%'.$search.'%')->orderBy('created_at', 'desc')->paginate(2);
+        $all = DB::table('link')->where('link','like','%'.$search.'%')->orWhere('header','like','%'.$search.'%')->orderBy('created_at', 'desc')->paginate(8);
         return view('store.search',compact('all'));
     }
 }

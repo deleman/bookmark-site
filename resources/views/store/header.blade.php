@@ -55,20 +55,31 @@
 
 
 
-        <div class="col-sm-3 col-md-3 col-lg-2 mx-auto p-0 mb-3 radius-bottom d-flex justify-content-center h-100">
+        <div class="col-sm-4 col-md-4 col-lg-3 mx-auto p-0 mb-3 radius-bottom d-flex justify-content-center h-100">
 
-            <a href="{{route('insert')}}" class="btn btn-primary align-content-center col-sm-6">New Link</a>
-            <a class="btn btn-light w-100 h-100">Home</a>
+            <a href="{{route('insert')}}" class="btn btn-primary align-content-center col-lg-5 col-md-5 col-sm-4">New Link</a>
+            <a class="btn btn-light w-50" href="{{route('home')}}">Home</a>
 
-            <div class="input-group align-content-center px-0 col-sm-6">
+            <div class="input-group align-content-center px-0 col-sm-10">
                     <div class="input-group-append col-12 m-0 p-0">
-                        <a class="btn btn-info align-content-center col-sm-8" href="login/login">log in</a>
+                        @guest
+                            <a class="btn btn-info align-content-center col-sm-8 col-md-6 col-lg-5" href="{{route('mylogin')}}">log in</a>
+                        @else
+                        <span class="btn btn-info align-content-center col-sm-7 text-truncate" href="">{{ Auth::user()->name }}</span>
+                        @endguest
 
-                        <button type="button" class="col-sm-4  btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="col-sm-3 col-md-2  btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="register">sign up</a>
+                            @guest
+                                <a class="dropdown-item" href="{{route('myregister')}}">sign up</a>
+                            @else
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                {{ csrf_field() }}
+                                <button type="submit" class="dropdown-item" href="{{ route('logout') }}">logout </button>
+                            </form>
+                            @endguest
                         </div>
                     </div>
                 </div>

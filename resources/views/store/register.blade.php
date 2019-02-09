@@ -3,17 +3,21 @@
 @push('css')
     <style>
 
-        body{
-            background-color: currentColor;
-        }
-        .radius{
-            border: 1px solid lightblue;
-            border-radius: 15px;
-            box-shadow: 2px 3px 3px cyan;
-        }
-        .custome-bg{
-            background-color: darkslategrey !important;
-        }
+            body{
+                background-color: currentColor;
+            }
+            .radius{
+                border: 1px solid lightblue;
+                border-radius: 15px;
+                box-shadow: 2px 3px 3px cyan;
+            }
+            .custome-bg{
+                background-color: darkslategrey !important;
+            }
+            .card-radius{
+                border-radius: 14px;
+            }
+
 
     </style>
 @endpush
@@ -25,18 +29,20 @@
         </div>
     </article>
 
+@include('store.header')
 
-@section('content')
+
 <div class="container">
-    <div class="row justify-content-center bg-light">
+    <div class="row justify-content-center mt-5">
         <div class="col-md-8">
+            <div class="card card-radius">
                 <div class="card-header">
-                        <div class="row">
-                            <span class="col-2 ml-auto">{{ __('Register') }}</span>
-                            <div class="col-4"></div>
-                            <a class="btn btn-primary align-content-center col-2" href="{{route('mylogin')}}">login</a>
-                            <a class="btn btn-info align-content-center col-2" href="{{route('myregister')}}">Register</a>
-                        </div>
+                    <div class="row" >
+                        <span class="col-2 ml-auto">{{ __('Register') }}</span>
+                        <div class="col-4"></div>
+                        <a class="btn btn-primary align-content-center col-2" href="{{route('mylogin')}}">login</a>
+                        <a class="btn btn-info align-content-center col-2" href="{{route('myregister')}}">Register</a>
+                    </div>
                 </div>
 
                 <div class="card-body">

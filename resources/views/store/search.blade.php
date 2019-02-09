@@ -65,10 +65,12 @@
         <section class="radius mt-1 container-fluid relative">
                 @include('store.header')
 
-        <article class="row">
+        <article class="row" style="margin-bottom:100px;">
+
             <div class=" col-sm-12 col-lg-10 col-md-12 m-auto px-1  pt-2">
                 {{-- if search result is empty show for user empty result --}}
-                <div class="bg-dark text-white mx-auto my-2 slice-radius px-3 py-1 row">
+                        @if (count($all)==0)
+                        <div class="bg-dark text-white mx-auto my-2 slice-radius px-3 py-1 row">
                         <h3 class="col-md-8 col-lg-9 col-sm-12 h4 text-danger pt-1 justify-content-start">
                             Result Search Not Fount ...
                         </h3>
@@ -77,6 +79,8 @@
 
                         </div>
                     </div>
+                        @endif
+
                 {{-- end if search result empty --}}
 
                 @foreach ($all as $item)
