@@ -27,7 +27,9 @@
     .top-radius{
         border-radius: 12px 12px 0px 0px;
     }
-
+    .home-radius{
+        border-radius: 12px;
+    }
 
 
 </style>
@@ -37,7 +39,8 @@
 
 <article class="row bg-dark top-radius">
 
-        <div class="col-sm-8 col-md-8 col-lg-6 mx-auto p-0 mt-3 mb-0 pb-0 radius-search d-flex h-100">
+        <div class="col-sm-6 col-md-6 col-lg-5 mx-auto p-0 mt-3 mb-0 pb-0 radius-search d-flex h-100">
+        {{-- <div class="col-sm-8 col-md-8 col-lg-6 mx-auto p-0 mt-3 mb-0 pb-0 radius-search d-flex h-100"> --}}
                 <form class="align-content-center w-100" action="{{route('search-post')}}" method="POST">
                     {{ csrf_field() }}
                     <div class="input-group ">
@@ -47,10 +50,16 @@
                         </div>
                     </div>
                 </form>
-        </div>
+            </div>
+
+
+
 
         <div class="col-sm-3 col-md-3 col-lg-2 mx-auto p-0 mb-3 radius-bottom d-flex justify-content-center h-100">
+
             <a href="{{route('insert')}}" class="btn btn-primary align-content-center col-sm-6">New Link</a>
+            <a class="btn btn-light w-100 h-100">Home</a>
+
             <div class="input-group align-content-center px-0 col-sm-6">
                     <div class="input-group-append col-12 m-0 p-0">
                         <a class="btn btn-info align-content-center col-sm-8" href="login/login">log in</a>
