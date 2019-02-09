@@ -79,7 +79,18 @@
 
             <div class="col-sm-3 col-md-3 col-lg-2 mx-auto p-0 mb-3 radius-bottom d-flex justify-content-center h-100">
                 <a href="{{route('insert')}}" class="btn btn-primary align-content-center col-sm-6">New Link</a>
-                <button class="btn btn-primary align-content-center col-sm-6">log in</button>
+                <div class="input-group align-content-center px-0 col-sm-6">
+                        <div class="input-group-append col-12 m-0 p-0">
+                            <a class="btn btn-info align-content-center col-sm-8" href="login/login">log in</a>
+
+                            <button type="button" class="col-sm-4  btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="register">sign up</a>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </article>
         <article class="row">

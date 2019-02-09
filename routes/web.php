@@ -78,6 +78,19 @@ Route::get('test',function(){
 });
 
 
+/**
+ * Route custome login
+ */
+Route::get('login/login','LoginController@login')->name('mylogin');
+/**
+ * Route custome register
+ */
+Route::get('register/register','LoginController@register')->name('myregister');
+
+
+/**
+ * authentication laravel Routes
+ */
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
