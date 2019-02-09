@@ -66,7 +66,7 @@ Route::post('change','LinkController@change')->name('change');
 Route::post('update','LinkController@update')->name('update');
 
 //show all information in page
-Route::get('show','LinkController@show');
+Route::get('show','LinkController@show')->name('show');
 
 
 /**
@@ -86,6 +86,13 @@ Route::get('login/login','LoginController@login')->name('mylogin');
  * Route custome register
  */
 Route::get('register/register','LoginController@register')->name('myregister');
+
+
+/**
+ * Route for show result search
+ */
+Route::get('search','LinkController@search')->name('search');
+Route::post('search','LinkController@search')->name('search-post');
 
 
 /**

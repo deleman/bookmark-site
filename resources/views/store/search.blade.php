@@ -55,7 +55,6 @@
 
     </style>
     @endpush
-
     @section('content')
     <article class="row">
             <div class="col-sm-5 m-auto">
@@ -67,12 +66,12 @@
         <article class="row bg-dark top-radius">
 
             <div class="col-sm-8 col-md-8 col-lg-6 mx-auto p-0 mt-3 mb-0 pb-0 radius-search d-flex h-100">
-                    <form class="align-content-center w-100" action="{{route('search-post')}}" method="POST">
+                    <form class="align-content-center w-100" action="{{route('search')}}" method="POST">
                         {{ csrf_field() }}
                         <div class="input-group ">
                             <input type="text" class="form-control input-radius" name="search" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-success btn-radius" type="submit">Search</button>
+                                <button class="btn btn-outline-success btn-radius" type="button">Search</button>
                             </div>
                         </div>
                     </form>
@@ -99,24 +98,16 @@
                 @foreach ($all as $item)
                     <div class="bg-dark text-white mx-auto my-2 slice-radius px-3 py-1 row">
                         <h3 class="col-md-8 col-lg-9 col-sm-12">{{$item->header}}</h3>
-                        {{-- if users authenticated can see this --}}
-                        @if (Auth::check())
-                                <div class="col-md-4 col-lg-3 col-sm-12 d-flex justify-content-center row p-0 m-0">
+                        <div class="col-md-4 col-lg-3 col-sm-12 d-flex justify-content-center row p-0 m-0">
                             <a class="col-md-4 col-sm-2 col-3 btn btn-primary" target="_black" href="{{$item->link}}">go link</a>
-                                {{--  change post   --}}
-                                <form class="col-md-4 col-sm-2 col-3 p-0 m-0" action="{{route('change')}}" method="POST">
-                                        {{ csrf_field() }}
-                                    <input type="hidden" value="{{$item->link}}" name="url" id="url">
-                                    <button class="col-12 btn btn-warning">change</button>
-                                </form>
+                            {{--  change post   --}}
+                            <form class="col-md-4 col-sm-2 col-3 p-0 m-0" action="{{route('change')}}" method="POST">
+                                    {{ csrf_field() }}
+                                <input type="hidden" value="{{$item->link}}" name="url" id="url">
+                                <button class="col-12 btn btn-warning">change</button>
+                            </form>
 
-                                @include('store.delete')
-                            @else
-
-                            <div class="col-md-4 col-lg-3 col-sm-12 d-flex justify-content-end row p-0 m-0">
-                                <a class="col-md-4 col-sm-2 col-3 btn btn-primary align-self-right" target="_black" href="{{$item->link}}">go link</a>
-
-                            @endif
+                            @include('store.delete')
                         </div>
                     </div>
                 @endforeach

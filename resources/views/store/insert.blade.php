@@ -20,8 +20,17 @@
 
 @section('content')
     <article class="row">
-        <div class="col-sm-5 m-auto">
+        <div class="col-sm-5 m-auto mt-2 mb-0">
                 @include('store.error')
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
         </div>
     </article>
     <article class="row ">

@@ -36,7 +36,10 @@ class LinkController extends Controller
 
     //store information
     public function store(Request $request){
-
+        $validatedData = $request->validate([
+            'header' => 'required|max:255|min:5',
+            'url' => 'required|max:255|min:10|url'
+        ]);
         //is informaiton exist in table
         if($this->get_by_link($request->url)){
             $request->session()->flash('errorInserted','Error!!, your infromation exist!');
@@ -84,6 +87,7 @@ class LinkController extends Controller
 
     //change or edit signle link
     public function change(Request $request){
+
         //get information and validate it
         $url = $this->val_input($request->url);
 
@@ -105,6 +109,15 @@ class LinkController extends Controller
 
     //update sigle link
     public function update(Request $request){
+        $validatedData = $request->validate([
+            'header' => 'required|max:255|min:5',
+            'url' => 'required|max:255|min:10|url'
+        ]);
+        echo "<ul>";
+            foreach ($errors->all() as $error)
+                echo '<li>{{ $error }}</li>';
+        echo "</ul>";
+        return $validatedData;
         $header = $this->val_input($request->header);
         $url= $this->val_input($request->url);
         $url_hidden= $this->val_input($request->url_hidden);
@@ -129,5 +142,16 @@ class LinkController extends Controller
            $request->session()->flash('errorInserted','Error!!, in update your informations!');
        }
 
+    }
+
+
+    //show result page and get post informations
+    public function search(Request $request){
+        if($request->search==null){
+           return redirect()->route('show');
+        }
+        $search =$this->val_input($request->search);
+        $all = DB::table('link')->where('link','=',$search)->orWhere('header','=',$search)->orderBy('created_at', 'desc')->paginate(2);
+        return view('store.search',compact('all'));
     }
 }

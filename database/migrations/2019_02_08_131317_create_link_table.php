@@ -14,9 +14,9 @@ class CreateLinkTable extends Migration
     public function up()
     {
         Schema::create('link', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('header');
-            $table->string('link')->unique();
+            $table->increments('id')->nullable(false);
+            $table->string('header')->nullable(false);
+            $table->string('link')->nullable(false)->unique();
             $table->mediumText('description');
             $table->timestamps();
         });
