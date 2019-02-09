@@ -21,22 +21,27 @@
 @section('content')
     <article class="row">
         <div class="col-sm-5 mt-2 mb-0 m-auto">
-
-             @include('store.error')
+            {{-- @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif --}}
+            {{-- @include('store.error') --}}
         </div>
     </article>
-
-    @include('store.header')
-
     <article class="row ">
 
         <div class="col-sm-10 col-md-8 col-lg-6 mx-auto custome-bg mt-5 text-light radius pt-3">
             <h3 class="m-auto text-center text-warning ">Link update</h3>
-            <form class="p-1 pt-1 pb-4" action="{{route('update')}}" method="POST">
+            <form class="p-1 pt-1 pb-4" action="{{route('testvalidation')}}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="inputAddress">Link Header</label>
-                    <input type="text" name="header" class="form-control" id="inputAddress" value="{{$data->header}} " placeholder="header ...">
+                    <input type="text" name="header" class="form-control" id="inputAddress" value="{{$data->header}}" placeholder="header ...">
                 </div>
 
                 <div class="form-group">

@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Schema;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'LinkController@show');
 
 //myself coding
 
@@ -60,7 +58,7 @@ Route::post('store','LinkController@store')->name('store');
 Route::post('delete','LinkController@delete')->name('delete');
 
 //change or edit link informations
-Route::post('change','LinkController@change')->name('change');
+Route::match(array('GET', 'POST'),'change','LinkController@change')->name('change');
 
 //update link informations
 Route::post('update','LinkController@update')->name('update');
@@ -77,6 +75,13 @@ Route::get('test',function(){
     return view('store.test.test');
 });
 
+//test validation form just show test form
+Route::get('testvalidation','TestController@testvalidation');
+
+//test validation form get post data from test form
+Route::post('testvalidation','TestController@update')->name('testvalidation');
+
+//end just for test
 
 /**
  * Route custome login
@@ -100,4 +105,4 @@ Route::post('search','LinkController@search')->name('search-post');
  */
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('show', 'LinkController@show')->name('home');

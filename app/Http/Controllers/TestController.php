@@ -178,4 +178,20 @@ class TestController extends Controller
 
         return $users;
     }
+
+
+    //test validation in laravel
+    public function testvalidation(){
+
+        return view('test');
+    }
+
+    //get post data from form for validate it
+    public function update(Request $request){
+        $validatedData = $request->validate([
+            'header' => 'required|max:255|min:5',
+            'url' => 'required|max:255|min:10|url'
+        ]);
+        return 'you infomation was inseted into some place';
+    }
 }

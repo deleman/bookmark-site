@@ -22,17 +22,11 @@
     <article class="row">
         <div class="col-sm-5 m-auto mt-2 mb-0">
                 @include('store.error')
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
         </div>
     </article>
+
+    @include('store.header')
+
     <article class="row ">
 
         <div class="col-sm-10 col-md-8 col-lg-6 mx-auto text-light custome-bg mt-5 radius pt-3">
@@ -41,17 +35,17 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="inputAddress">Link Header</label>
-                    <input type="text" name="header" class="form-control" id="inputAddress" placeholder="header ...">
+                    <input type="text" name="header" class="form-control" id="inputAddress" value="{{old('header')}}" placeholder="header ...">
                 </div>
 
                 <div class="form-group">
                     <label for="inputAddress">Link Url</label>
-                    <input type="text" name="url" class="form-control" id="inputAddress" placeholder="url ...">
+                    <input type="text" name="url" class="form-control" id="inputAddress" value="{{old('url')}}" placeholder="url ...">
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Link Description</label>
-                    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" placeholder="description ..."></textarea>
+                    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" value="{{old('description')}}" placeholder="description ..."></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-block btn-danger">save</button>

@@ -62,39 +62,23 @@
             </div>
         </article>
 
-    <section class="radius mt-1 container-fluid relative">
-        <article class="row bg-dark top-radius">
+        <section class="radius mt-1 container-fluid relative">
+                @include('store.header')
 
-            <div class="col-sm-8 col-md-8 col-lg-6 mx-auto p-0 mt-3 mb-0 pb-0 radius-search d-flex h-100">
-                    <form class="align-content-center w-100" action="{{route('search')}}" method="POST">
-                        {{ csrf_field() }}
-                        <div class="input-group ">
-                            <input type="text" class="form-control input-radius" name="search" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-success btn-radius" type="button">Search</button>
-                            </div>
-                        </div>
-                    </form>
-            </div>
-
-            <div class="col-sm-3 col-md-3 col-lg-2 mx-auto p-0 mb-3 radius-bottom d-flex justify-content-center h-100">
-                <a href="{{route('insert')}}" class="btn btn-primary align-content-center col-sm-6">New Link</a>
-                <div class="input-group align-content-center px-0 col-sm-6">
-                        <div class="input-group-append col-12 m-0 p-0">
-                            <a class="btn btn-info align-content-center col-sm-8" href="login/login">log in</a>
-
-                            <button type="button" class="col-sm-4  btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="register">sign up</a>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </article>
         <article class="row">
             <div class=" col-sm-12 col-lg-10 col-md-12 m-auto px-1  pt-2">
+                {{-- if search result is empty show for user empty result --}}
+                <div class="bg-dark text-white mx-auto my-2 slice-radius px-3 py-1 row">
+                        <h3 class="col-md-8 col-lg-9 col-sm-12 h4 text-danger pt-1 justify-content-start">
+                            Result Search Not Fount ...
+                        </h3>
+                        <div class="col-md-4 col-lg-3 col-sm-12 d-flex justify-content-center row p-0 m-0">
+
+
+                        </div>
+                    </div>
+                {{-- end if search result empty --}}
+
                 @foreach ($all as $item)
                     <div class="bg-dark text-white mx-auto my-2 slice-radius px-3 py-1 row">
                         <h3 class="col-md-8 col-lg-9 col-sm-12">{{$item->header}}</h3>

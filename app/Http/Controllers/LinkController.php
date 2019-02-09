@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Route;
 
 class LinkController extends Controller
 {
@@ -88,23 +89,32 @@ class LinkController extends Controller
     //change or edit signle link
     public function change(Request $request){
 
-        //get information and validate it
-        $url = $this->val_input($request->url);
+        $typeRoute = ($request->method());
+        if($typeRoute =='POST'){
+            //get information and validate it
+            $url = $this->val_input($request->url);
 
-        //is informaiton exist in table
-        //if information exsit update it else show error doest exist
-        if($this->get_by_link($request->url)){
-            /**
-             * if infomations exist
-             * get informations by link and set it to the change file
-            */
-            $data = DB::table('link')->where('link', '=', $url)->get();
-            $data =$data[0];
+            //is informaiton exist in table
+            //if information exsit update it else show error doest exist
+            if($this->get_by_link($request->url)){
+                /**
+                 * if infomations exist
+                 * get informations by link and set it to the change file
+                */
+                $data = DB::table('link')->where('link', '=', $url)->get();
+                $data =$data[0];
 
-            return view('store.change',compact('data'));
+                return view('store.change',compact('data'));
+            }else{
+                return redirect('show')->with('errorInserted', 'Error!!, your information does not exist!');
+            }
+        }elseif($typeRoute =='GET'){
+            return view('store.change-old');
         }else{
-            return redirect('show')->with('errorInserted', 'Error!!, your information does not exist!');
+            return redirect('show')->with('errorInserted', 'Error!!, some error was eccured!');
+
         }
+
     }
 
     //update sigle link
@@ -113,10 +123,7 @@ class LinkController extends Controller
             'header' => 'required|max:255|min:5',
             'url' => 'required|max:255|min:10|url'
         ]);
-        echo "<ul>";
-            foreach ($errors->all() as $error)
-                echo '<li>{{ $error }}</li>';
-        echo "</ul>";
+
         return $validatedData;
         $header = $this->val_input($request->header);
         $url= $this->val_input($request->url);
@@ -147,11 +154,17 @@ class LinkController extends Controller
 
     //show result page and get post informations
     public function search(Request $request){
+        //set default value for search session 
+        session('search_value','search ...');
+
         if($request->search==null){
            return redirect()->route('show');
         }
+
         $search =$this->val_input($request->search);
-        $all = DB::table('link')->where('link','=',$search)->orWhere('header','=',$search)->orderBy('created_at', 'desc')->paginate(2);
+        //set session
+        session(['search_value'=> $search]);
+        $all = DB::table('link')->where('link','like','%'.$search.'%')->orWhere('header','like','%'.$search.'%')->orderBy('created_at', 'desc')->paginate(2);
         return view('store.search',compact('all'));
     }
 }
