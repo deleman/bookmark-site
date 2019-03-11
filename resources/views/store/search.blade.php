@@ -69,25 +69,26 @@
 
             <div class=" col-sm-12 col-lg-10 col-md-12 m-auto px-1  pt-2">
                 {{-- if search result is empty show for user empty result --}}
-                        @if (count($all)==0)
+                    @if (count($all)==0)
                         <div class="bg-dark text-white mx-auto my-2 slice-radius px-3 py-1 row">
-                        <h3 class="col-md-8 col-lg-9 col-sm-12 h4 text-danger pt-1 justify-content-start">
-                            Result Search Not Fount ...
-                        </h3>
-                        <div class="col-md-4 col-lg-3 col-sm-12 d-flex justify-content-center row p-0 m-0">
+                            <h3 class="col-md-8 col-lg-9 col-sm-12 h4 text-danger pt-1 justify-content-start">
+                                Result Search Not Fount ...
+                            </h3>
+                            <div class="col-md-4 col-lg-3 col-sm-12 d-flex justify-content-center row p-0 m-0">
 
 
+                            </div>
                         </div>
-                    </div>
-                        @endif
+                    @endif
 
                 {{-- end if search result empty --}}
-
                 @foreach ($all as $item)
-                    <div class="bg-dark text-white mx-auto my-2 slice-radius px-3 py-1 row">
-                        <h3 class="col-md-8 col-lg-9 col-sm-12">{{$item->header}}</h3>
-                        <div class="col-md-4 col-lg-3 col-sm-12 d-flex justify-content-center row p-0 m-0">
-                            <a class="col-md-4 col-sm-2 col-3 btn btn-primary" target="_black" href="{{$item->link}}">go link</a>
+                <div class="bg-dark text-white mx-auto my-2 slice-radius px-3 py-1 row">
+                    <h3 class="col-md-8 col-lg-9 col-sm-12">{{$item->header}}</h3>
+                    {{-- if users authenticated can see this --}}
+                    @if (Auth::check())
+                            <div class="col-md-4 col-lg-3 col-sm-12 d-flex justify-content-center row p-0 m-0">
+                        <a class="col-md-4 col-sm-2 col-3 btn btn-primary" target="_black" href="{{$item->link}}">go link</a>
                             {{--  change post   --}}
                             <form class="col-md-4 col-sm-2 col-3 p-0 m-0" action="{{route('change')}}" method="POST">
                                     {{ csrf_field() }}
@@ -96,9 +97,15 @@
                             </form>
 
                             @include('store.delete')
-                        </div>
+                        @else
+
+                        <div class="col-md-4 col-lg-3 col-sm-12 d-flex justify-content-end row p-0 m-0">
+                            <a class="col-md-4 col-sm-2 col-3 btn btn-primary align-self-right" target="_black" href="{{$item->link}}">go link</a>
+
+                        @endif
                     </div>
-                @endforeach
+                </div>
+            @endforeach
 
             </div>
         </article>

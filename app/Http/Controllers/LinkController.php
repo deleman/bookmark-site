@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 
 class LinkController extends Controller
 {
-
     //delete singel post
     public function delete(Request $request){
         $url = $this->val_input($request->url);
